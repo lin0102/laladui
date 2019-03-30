@@ -1,0 +1,13 @@
+footer {
+    width: 100vw;
+    height: 28.8vw;
+    background: url(./image/tail.png);
+    background-size: 100%;
+    margin-top: 3vw;
+    display: flex;
+    justify-content: center;
+    line-height: 18vw;
+    color: #ce6273;
+    font-size: 3.33vw;
+    letter-spacing: 0.5vw;
+}

@@ -1,0 +1,30 @@
+.banner {
+    width: 100vw;
+    height: 69.33vw;
+    background-image: url(./image/banner.png);
+    background-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    .total-vote {
+        width: 46.13vw;
+        height: 6.8vw;
+        margin-bottom: 4.93vw;
+        display: flex;
+        justify-content: space-between;
+        div {
+            width: 6.8vw;
+            height: 6.8vw;
+            box-sizing: border-box;
+            border: 0.53vw solid transparent;
+            border-image: url(./image/border.png) 6.8% round;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fffed7;
+        }
+    }
+}

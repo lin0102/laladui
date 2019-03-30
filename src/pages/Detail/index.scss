@@ -1,0 +1,94 @@
+.detail {
+    width: 100vw;
+    height: 100vh;
+
+    .detail-head {
+        width: 100vw;
+        height: 61.47vw;
+        background: #fdc7bf;
+        box-sizing: border-box;
+        padding-top: 3vw;
+    }
+
+    .detail-tag {
+        width: 100vw;
+        height: 23.47vw;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: 0.13vw solid #fac0b7;
+        .tag-left {
+            width: 50vw;
+            .tag-institute {
+                width: 100%;
+                font-size: 4.55vw;
+                color: #dc305f;
+                margin: 0;
+                letter-spacing: 0.45vw;
+            }
+            div {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-top: 2vw;
+                p {
+                    white-space: nowrap;
+                    font-size: 2.93vw;
+                    margin: 0;
+                    border: 0.27vw solid #f4889e;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 2vw;
+                    padding-left: 2vw;
+                    padding-right: 2vw;
+                    letter-spacing: 0.1vw;
+                    &:nth-child(3) {
+                        margin-right: 0;
+
+                    }
+                }
+                
+            }
+        }
+        .tag-right {
+            div {
+                background-image: url(./image/voteBox.png);
+                width: 17.33vw;
+                height: 5.73vw;
+                background-size: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 3.47vw;
+                color: #fb6869;
+                &:nth-child(2) {
+                    margin-top: 2vw;
+                }
+            }
+        }
+    }
+
+    p {
+        margin: 0;
+        width: 90vw;
+        color: #db7579;
+        margin-top: 4.5vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .detail-button {
+        width: 75.2vw;
+        height: 12.4vw;
+        background-image: url(./image/button.png);
+        background-size: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 7.3vw;
+        text-align: center;
+        line-height: 12.4vw;
+        color: #fffed1;
+        font-size: 4.8vw;
+    }
+}

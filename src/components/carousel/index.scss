@@ -1,0 +1,48 @@
+.carousel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .carousel-box {
+        height: 51.47vw;
+        width: 100vw;
+        overflow: hidden;
+        .carousel-content {
+            display: flex;
+            transition-duration: 1s;
+            div {
+                width: 82.93vw;
+                height: 51.47vw;
+                border-radius: 1.33vw;
+                background: red;
+                flex-shrink: 0;
+                margin-left: 1.33vw;
+                margin-right: 1.33vw;
+                &:nth-child(1) {
+                    background: red;
+                }
+                &:nth-child(2) {
+                    background: yellow;
+                }
+                &:nth-child(3) {
+                    background: blue;
+                    
+                }
+            }
+        }
+    }
+    .carousel-index {
+        display: flex;
+        margin-top: 2.93vw;
+        width: 7.5vw;
+        justify-content: space-between;
+        div {
+            width: 1.2vw;
+            height: 1.2vw;
+            background-color: #efeeb8;
+            border-radius: 50%;
+        }
+        .light-index {
+            background-color: #dc3e38;
+        }
+    }
+}

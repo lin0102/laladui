@@ -1,0 +1,141 @@
+.mienShow {
+    background: #ffd2c9;
+    margin-top: 69.33vw;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .mienTitle {
+        width: 98vw;
+        height: 17.46vw;
+        border-bottom: 0.8vw solid #fdacbb;
+        box-shadow: 0 0.67vw #fb8fa3;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+        .titleMain {
+            width:90vw;
+            height: 12.15vw;
+            margin-top: 3.5vw;
+            margin-bottom: 1.8vw;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            div {
+                &:nth-child(1) {
+                    width: 23.47vw;
+                    height: 7.2vw;
+                    background-image: url(./image/button.png);
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 3.2vw;
+                    color: #f2eebf;
+                    strong {
+                        color: #fdff33;
+                    }
+                }
+                &:nth-child(2) {
+                    display: flex;
+                    nav {
+                        width: 3.07vw;
+                        height: 5.4vw;
+                        box-sizing: border-box;
+                        border-right: 0.27vw solid #feb9c0;
+                        border-top: 0.27vw solid #feb9c0;
+                        border-bottom: 0.27vw solid #feb9c0;
+                        transform: translate(0, -1vw);
+                        &:last-child {
+                            border-right: none;
+                        }
+                    }
+                }
+                &:nth-child(3) {
+                    width: 26.27vw;
+                    height: 10.8vw;
+                    box-sizing: border-box;
+                    border-top: 0.54vw solid #fb6581;
+                    border-right: 1.08vw solid #fb6581;
+                    border-bottom: 1.08vw solid #fb6581;
+                    border-left: 1.08vw solid #fb6581;
+                    background: #fb8fa3;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 5.24vw;
+                    color: white;
+                    box-shadow: 0 0.4vw #e93d5d;
+                    position: relative;
+                    z-index: 1;
+                    text-shadow: 1px 1px #ec5871;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        bottom: -3.25vw;
+                        left: 2vw;
+                        width: 0.67vw;
+                        height: 1.9vw;
+                        background: #fdacbb;
+                        z-index: -1;
+                    }
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        bottom: -3.25vw;
+                        right: 2vw;
+                        width: 0.67vw;
+                        height: 1.9vw;
+                        background: #fdacbb;
+                    }
+                }
+                &:nth-child(4) {
+                    display: flex;
+                    nav {
+                        width: 3.07vw;
+                        height: 5.4vw;
+                        box-sizing: border-box;
+                        border-right: 0.27vw solid #feb9c0;
+                        border-top: 0.27vw solid #feb9c0;
+                        border-bottom: 0.27vw solid #feb9c0;
+                        transform: translate(0, -1vw);
+                        &:last-child {
+                            border-right: none;
+                        }
+                    }
+                }
+                &:nth-child(5) {
+                    width: 23.47vw;
+                    height: 7.2vw;
+                    background-image: url(./image/button.png);
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 3.2vw;
+                    color: #f2eebf;
+                }
+            }
+        }
+        img {
+            &:nth-child(1) {
+                width: 3.6vw;
+                height: 19vw;
+            }
+            &:last-child {
+                width: 3.6vw;
+                height: 19vw;
+            }
+        }
+    }
+    .mienMain {
+        margin-top: 0.67vw;
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
