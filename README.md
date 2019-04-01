@@ -1,3 +1,13 @@
+#项目完成进度
+ - [x] 首页切图
+ - [x] 详情页切图
+ - [x] 轮播组件
+ - [x] 主页面到风采详情页的跳转
+ - [ ] 活动规则弹窗
+ - [x] 投票成功弹窗
+ - [x] 票数用完弹窗
+ - [x] 视觉要求的效果
+ - [ ] 接入后端接口
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -8,4 +8,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #ffd2c9;
 }
+@font-face {
+    font-family: dianzhen;
+    src: url(../src/font/dianzhen.ttf);
+}
+@font-face {
+    font-family: tengxiang;
+    src: url(../src/font/tengxiang.ttf);
+}
+
 

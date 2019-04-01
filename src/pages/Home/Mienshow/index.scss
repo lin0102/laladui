@@ -32,6 +32,7 @@
                     align-items: center;
                     font-size: 3.2vw;
                     color: #f2eebf;
+                    font-family: dianzhen;
                     strong {
                         color: #fdff33;
                     }
@@ -69,6 +70,7 @@
                     position: relative;
                     z-index: 1;
                     text-shadow: 1px 1px #ec5871;
+                    font-family: tengxiang;
                     &::before {
                         content: "";
                         position: absolute;
@@ -115,6 +117,7 @@
                     align-items: center;
                     font-size: 3.2vw;
                     color: #f2eebf;
+                    font-family: dianzhen;
                 }
             }
         }

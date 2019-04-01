@@ -2,9 +2,11 @@
   "name": "la-la-dui",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@babel/core": "7.2.2",
     "@svgr/webpack": "4.1.0",
+    "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
@@ -43,6 +45,8 @@
     "react-app-polyfill": "^0.2.2",
     "react-dev-utils": "^8.0.0",
     "react-dom": "^16.8.5",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
@@ -119,6 +123,9 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.11.0",
+    "redux-devtools": "^3.5.0",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6"
   }
 }

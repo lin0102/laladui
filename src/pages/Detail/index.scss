@@ -18,20 +18,20 @@
         align-items: center;
         border-bottom: 0.13vw solid #fac0b7;
         .tag-left {
-            width: 50vw;
             .tag-institute {
-                width: 100%;
+                width: fit-content;
                 font-size: 4.55vw;
                 color: #dc305f;
                 margin: 0;
                 letter-spacing: 0.45vw;
+                white-space: nowrap;
             }
             div {
-                width: 100%;
                 display: flex;
                 justify-content: space-between;
                 margin-top: 2vw;
                 p {
+                    width: auto;
                     white-space: nowrap;
                     font-size: 2.93vw;
                     margin: 0;
@@ -45,7 +45,6 @@
                     letter-spacing: 0.1vw;
                     &:nth-child(3) {
                         margin-right: 0;
-
                     }
                 }
                 
@@ -62,6 +61,7 @@
                 align-items: center;
                 font-size: 3.47vw;
                 color: #fb6869;
+                font-family: dianzhen;
                 &:nth-child(2) {
                     margin-top: 2vw;
                 }
@@ -90,5 +90,6 @@
         line-height: 12.4vw;
         color: #fffed1;
         font-size: 4.8vw;
+        font-family: tengxiang;
     }
 }

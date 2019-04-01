@@ -1,12 +1,41 @@
 import React from 'react';
 import './index.scss';
-import Carousel from '../../components/carousel'
+import Carousel from '../../components/carousel';
+import store from '../../redux/store';
+import Prompt from '../../components/prompt';
 
 export default class Detail extends React.Component {
     constructor() {
         super();
+        this.pageNum = window.sessionStorage.getItem('detailPage');
+        this.state = {
+            listState: store.getState().cheerleaders[this.pageNum],
+            havePrompt: false,
+        };
+        this.promptText = "";
+    }
+    vote() {
+        const tempState = store.getState();
+        if(tempState.cheerleaders[this.pageNum].haveVote) {
+            return;
+        }
+        if(tempState.userPolls === 0) {
+            this.promptText = "已满";
+            this.setState({havePrompt: true})
+            return;
+        }
+        const listState = this.state.listState;
+        store.dispatch({type: "VOTE", index: this.pageNum});
+        this.promptText = "成功";
+        this.setState({listState: listState, havePrompt: true});
+    }
+    close() {
+        this.setState({havePrompt: false});
     }
     render() {
+        const prompt = this.state.havePrompt 
+        ? <Prompt text={this.promptText} closeSelf={() => this.close()}></Prompt>
+        : null;
         return (
             <div className='detail'>
                 <div className='detail-head'>
@@ -14,22 +43,28 @@ export default class Detail extends React.Component {
                 </div>
                 <div className='detail-tag'>
                     <div className='tag-left'>
-                        <p className='tag-institute'>计算机科学与技术学院</p>
+                        <p className='tag-institute'>{this.state.listState.institute}</p>
                         <div>
-                            <p>可爱</p>
-                            <p>活力</p>
-                            <p>穿着品如的衣服</p>
+                            <p>{this.state.listState.tags[0]}</p>
+                            <p>{this.state.listState.tags[1]}</p>
+                            <p>{this.state.listState.tags[2]}</p>
                         </div>
                     </div>
                     <div className='tag-right'>
                         <div>323分</div>
-                        <div>3233票</div>
+                        <div>{this.state.listState.votes}票</div>
                     </div>
                 </div>
                 <p>
-                    队是由各个院系统招专科普通学生组成的一支精灵而富有新时代想法的队伍。这是一支学习生活之余由普通学生组建起来的一个业余爱好施展的大舞台，这是一个学生挑战自我，优秀自身，实现梦想的队伍。自队伍成立以来，大家抽出业余时间，由专业老师带队，积极训练，团结一致。暑期一起赴西亚斯集训，共同吃住，共同努力。有幸代表我院，在CUBA中国大学生篮球联赛决赛集训中成为表演队伍。
+                    {this.state.listState.introduction}
                 </p>
-                <div className='detail-button'>投票</div>
+                <div 
+                    className='detail-button' 
+                    onClick={() => this.vote()}
+                >
+                    {this.state.listState.haveVote ? "已投" : "投票"}
+                </div>
+                {prompt}
             </div>
         )
     }

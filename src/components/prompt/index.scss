@@ -1,0 +1,62 @@
+.prompt {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 4;
+    .prompt-box {
+        width: 77.73vw;
+        height: 83.33vw;
+        background-image: url(./image/prompt-bg.png);
+        background-size: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 27vw;
+        div {
+            &:nth-child(1) {
+                width: 51.47vw;
+                height: 39.73vw;
+                background: url(./image/font-box.png);
+                background-size: 100%;
+                margin-top:11.2vw;
+                font-size: 11.89vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                color: #db6e55;
+                font-family: dianzhen;
+            }
+            &:nth-child(2) {
+                width: 38.27vw;
+                height: 11.87vw;
+                background: url(./image/prompt-button.png);
+                background-size: 100%;
+                margin-bottom: 8vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                font-size: 4.75vw;
+                color: #cb544a;
+                font-family: tengxiang;
+            }
+
+        }
+    }
+    .prompt-close {
+        width: 12.13vw;
+        height: 12.27vw;
+        background: url(./image/close.png);
+        background-size: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10vw;
+    }
+}

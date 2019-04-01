@@ -14,6 +14,10 @@
         display: flex;
         justify-content: space-between;
         z-index: 2;
+        a {
+            appearance: none;
+            text-decoration: none;
+        }
         div {
             &:nth-child(1) {
                 width: 31.73vw;
@@ -30,17 +34,20 @@
                     text-align: center;
                     line-height: 4.53vw;
                     color: #fffcd5;
+                    font-family: tengxiang;
                 }
             }
             &:nth-child(2) {
                 width: 50vw;
                 height: 100%;
                 position: relative;
-                h3 {
+                a {
                     margin: 0;
                     font-size: 3.47vw;
                     font-weight: normal;
                     color: #db405d;
+                    appearance: none;
+                    text-decoration: none;
                 }
                 p {
                     margin: 0;
@@ -53,12 +60,12 @@
                     position: absolute;
                     bottom: 0;
                     right: 0;
-                    // background-image: url(./image/voteButton.png);
                     background-size: 100%;
                     text-align: center;
                     line-height: 6.4vw;
                     font-size: 3.2vw;
                     color: white;
+                    font-family: tengxiang;
                 }
             }
         }

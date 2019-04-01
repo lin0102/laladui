@@ -1,9 +1,10 @@
 import React from 'react';
-import {Banner} from './Banner';
+import Banner from './Banner';
 import Mienshow from './Mienshow'
 import './index.css'
 
-export const Home = () => {
+const Home = () => {
+
     return (
         <div>
             <Banner></Banner>
@@ -12,3 +13,6 @@ export const Home = () => {
         </div>
     )
 }
+
+
+export default Home;
