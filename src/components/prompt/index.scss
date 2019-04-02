@@ -1,3 +1,11 @@
+@keyframes promptAppear {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
 .prompt {
     width: 100vw;
     height: 100vh;
@@ -6,6 +14,7 @@
     left: 0;
     top: 0;
     z-index: 4;
+    animation: promptAppear 0.5s;
     .prompt-box {
         width: 77.73vw;
         height: 83.33vw;

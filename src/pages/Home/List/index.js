@@ -12,7 +12,8 @@ export default class List extends React.Component {
         const styles = i % 2
             ? {
                 listStyle: {
-                    borderImage: "linear-gradient(#f7aa98 0, #f7aa98 25%,#fca6b0 25%, #fca6b0 100%) 0 3 round"
+                    borderImage: "linear-gradient(#f7aa98 0, #f7aa98 25%,#fca6b0 25%, #fca6b0 100%) 0 3 round",
+                    animation: "appearFromLeft 1s",
                 },
                 handStyle: {
                     transform: "scale(-1, 1)",
@@ -21,7 +22,8 @@ export default class List extends React.Component {
             }
             : {
                 listStyle: {
-                    borderImage: "linear-gradient(#fca6b0 0, #fca6b0 25%,#f7aa98 25%, #f7aa98 100%) 0 3 round"
+                    borderImage: "linear-gradient(#fca6b0 0, #fca6b0 25%,#f7aa98 25%, #f7aa98 100%) 0 3 round",
+                    animation: "appearFromRight 1s",
                 },
                 handStyle: {
                     left: "-2vw",
