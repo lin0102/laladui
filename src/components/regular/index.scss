@@ -1,0 +1,62 @@
+@keyframes regularAppear {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.regular {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 4;
+    animation: regularAppear 0.5s;
+
+    div {
+        margin-left: auto;
+        margin-right: auto;
+        &:nth-child(1) {
+            width: 72.53vw;
+            height: 93.2vw;
+            background: url(./image/regular.png);
+            background-size: 100%;
+            margin-top: 27vw;
+            padding-left: 0.5vw;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            article {
+                width: 80%;
+                height: 80%;
+                overflow-y: scroll;
+                h3 {
+                    color: #e63f3f;
+                    font-size: 4.8vw;
+                    text-align: center;
+                    font-family: tengxiang;
+                    margin: 0;
+                }
+                p {
+                    font-size: 3.2vw;
+                    color: #f65151;
+                    letter-spacing: 0.1vw;
+                }
+            }
+        }
+
+        &:nth-child(2) {
+            width: 12.13vw;
+            height: 12.27vw;
+            background: url(./image/close.png);
+            background-size: 100%;
+            margin-top: 10vw;
+        }
+    }
+}

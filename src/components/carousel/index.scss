@@ -8,25 +8,14 @@
         overflow: hidden;
         .carousel-content {
             display: flex;
-            transition-duration: 1s;
+            transition-duration: 0.5s;
             div {
                 width: 82.93vw;
                 height: 51.47vw;
-                border-radius: 1.33vw;
-                background: red;
+                border-radius: 1.33vw;    
                 flex-shrink: 0;
                 margin-left: 1.33vw;
                 margin-right: 1.33vw;
-                &:nth-child(1) {
-                    background: red;
-                }
-                &:nth-child(2) {
-                    background: yellow;
-                }
-                &:nth-child(3) {
-                    background: blue;
-                    
-                }
             }
         }
     }

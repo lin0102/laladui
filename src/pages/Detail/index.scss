@@ -17,6 +17,7 @@
         justify-content: space-around;
         align-items: center;
         border-bottom: 0.13vw solid #fac0b7;
+
         .tag-left {
             .tag-institute {
                 width: fit-content;
@@ -26,10 +27,12 @@
                 letter-spacing: 0.45vw;
                 white-space: nowrap;
             }
+
             div {
                 display: flex;
                 justify-content: space-between;
                 margin-top: 2vw;
+
                 p {
                     width: auto;
                     white-space: nowrap;
@@ -43,13 +46,15 @@
                     padding-left: 2vw;
                     padding-right: 2vw;
                     letter-spacing: 0.1vw;
+
                     &:nth-child(3) {
                         margin-right: 0;
                     }
                 }
-                
+
             }
         }
+
         .tag-right {
             div {
                 background-image: url(./image/voteBox.png);
@@ -62,6 +67,7 @@
                 font-size: 3.47vw;
                 color: #fb6869;
                 font-family: dianzhen;
+
                 &:nth-child(2) {
                     margin-top: 2vw;
                 }
@@ -78,6 +84,14 @@
         margin-right: auto;
     }
 
+    .detail-intro {
+        box-sizing: border-box;
+        padding-left: 3vw;
+        padding-right: 3vw;
+        font-size: 3.47vw;
+        line-height: 6vw;
+    }
+
     .detail-button {
         width: 75.2vw;
         height: 12.4vw;
@@ -91,5 +105,21 @@
         color: #fffed1;
         font-size: 4.8vw;
         font-family: tengxiang;
+    }
+
+    .bigimg {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 0;
+        animation: regularAppear 0.5s;
+        img {
+            width: 100vw;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 }

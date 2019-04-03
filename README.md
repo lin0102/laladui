@@ -8,6 +8,7 @@
  - [x] 票数用完弹窗
  - [x] 视觉要求的效果
  - [ ] 接入后端接口
+ - [x] 点击看大图
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

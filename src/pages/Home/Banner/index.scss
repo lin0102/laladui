@@ -1,3 +1,11 @@
+@keyframes float {
+    from {
+        transform: translate(0, -5%);
+    }
+    to {
+        transform: translate(0, 0);
+    }
+}
 .banner {
     width: 100vw;
     height: 69.33vw;
@@ -6,10 +14,44 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    position: fixed;
-    top: 0;
     z-index: 3;
-    touch-action: none;
+    position: relative;
+    img {
+        position: absolute;
+        &:nth-of-type(1) {
+            width: 19.6vw;
+            height: 13.47vw;
+            left: 0vw;
+            top: 4vw;
+            animation: float 0.8s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate-reverse;
+            animation-timing-function: ease-in-out;
+            animation-delay: 1s;
+        }
+        &:nth-of-type(2) {
+            width: 19.33vw;
+            height: 19.33vw;
+            bottom: 16vw;
+            left: 7vw;
+            animation: float 0.8s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate-reverse;
+            animation-timing-function: ease-in-out;
+            animation-delay: 2s;
+        }
+        &:nth-of-type(3) {
+            width: 10.53vw;
+            height: 5.47vw;
+            right: 12.3vw;
+            top: 16vw;
+            animation: float 0.8s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate-reverse;
+            animation-timing-function: ease-in-out;
+            animation-delay: 3s;
+        }
+    }
     .total-vote {
         width: 46.13vw;
         height: 6.8vw;

@@ -26,14 +26,14 @@
         flex-wrap: wrap;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 27vw;
+        margin-top: 35vw;
         div {
             &:nth-child(1) {
                 width: 51.47vw;
                 height: 39.73vw;
-                background: url(./image/font-box.png);
-                background-size: 100%;
                 margin-top:11.2vw;
+                box-sizing: border-box;
+                padding-top: 3vw;
                 font-size: 11.89vw;
                 display: flex;
                 justify-content: center;
@@ -58,14 +58,5 @@
             }
 
         }
-    }
-    .prompt-close {
-        width: 12.13vw;
-        height: 12.27vw;
-        background: url(./image/close.png);
-        background-size: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10vw;
     }
 }

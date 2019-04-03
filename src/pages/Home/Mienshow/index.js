@@ -4,6 +4,7 @@ import headSide from './image/headSide.png'
 import List from '../List'
 import store from '../../../redux/store'
 import Prompt from '../../../components/prompt'
+import Regular from '../../../components/regular'
 
 export default class Mienshow extends React.Component {
     constructor() {
@@ -11,26 +12,35 @@ export default class Mienshow extends React.Component {
         this.state = {
             userPolls: store.getState().userPolls,
             listStates: store.getState().cheerleaders,
-            havePrompt: false
+            havePrompt: false,
+            haveRegular: false
         }
         this.promptText = "";
+        this.unsubscribe = function(){}
     }
     vote(i) {
-        const tempState = store.getState();
-        if(tempState.cheerleaders[i].haveVote) {
+        if(this.state.listStates[i].haveVote) {
             return;
         }
-        if(tempState.userPolls === 0) {
+        if(store.getState().userPolls === 0) {
             this.promptText = "已满";
             this.setState({havePrompt: true})
             return;
         }
         store.dispatch({type: "VOTE", index: i});
         this.promptText = "成功";
+        this.setState({havePrompt: true});
+    }
+    componentDidMount() {
+        this.unsubscribe = store.subscribe(this.listener);
+    }
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+    listener = () => {
         this.setState({
-            listStates: store.getState().cheerleaders, 
-            havePrompt: true,
-            userPolls: store.getState().userPolls
+            listStates: store.getState().cheerleaders,
+            userPolls: store.getState().userPolls,
         });
     }
     toDetail(i) {
@@ -38,6 +48,12 @@ export default class Mienshow extends React.Component {
     }
     close() {
         this.setState({havePrompt: false});
+    }
+    closeRegular() {
+        this.setState({haveRegular: false})
+    }
+    openRegular() {
+        this.setState({haveRegular: true});
     }
     render() {
         let lists = [];
@@ -55,6 +71,11 @@ export default class Mienshow extends React.Component {
         const prompt = this.state.havePrompt 
         ? <Prompt text={this.promptText} closeSelf={() => this.close()}></Prompt>
         : null;
+
+        const regular = this.state.haveRegular
+        ? <Regular closeRegular={() => this.closeRegular()}></Regular>
+        : null;
+
         return (
             <div className='mienShow'>
                 <div className='mienTitle'>
@@ -74,7 +95,7 @@ export default class Mienshow extends React.Component {
                             <nav></nav>
                             <nav></nav>
                         </div>
-                        <div>活动规则</div>
+                        <div onClick={() => {this.openRegular()}}>活动规则</div>
                     </div>
                     <img src={headSide} alt="headSide" />
                 </div>
@@ -82,6 +103,7 @@ export default class Mienshow extends React.Component {
                     {lists}
                 </div>
                 {prompt}
+                {regular}
             </div>
         )
     }

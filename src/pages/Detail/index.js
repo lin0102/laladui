@@ -11,35 +11,51 @@ export default class Detail extends React.Component {
         this.state = {
             listState: store.getState().cheerleaders[this.pageNum],
             havePrompt: false,
+            haveImg: false,
+            imgsrc: ""
         };
         this.promptText = "";
     }
     vote() {
-        const tempState = store.getState();
-        if(tempState.cheerleaders[this.pageNum].haveVote) {
+        if(this.state.listState.haveVote) {
             return;
         }
-        if(tempState.userPolls === 0) {
+        if(store.getState().userPolls === 0) {
             this.promptText = "已满";
             this.setState({havePrompt: true})
             return;
         }
-        const listState = this.state.listState;
         store.dispatch({type: "VOTE", index: this.pageNum});
         this.promptText = "成功";
-        this.setState({listState: listState, havePrompt: true});
+        this.setState({
+            listState: store.getState().cheerleaders[this.pageNum],
+            havePrompt: true
+        });
     }
     close() {
         this.setState({havePrompt: false});
+    }
+    showImg(i) {
+        const imgsrc = this.state.listState.imgSrc[i];
+        this.setState({imgsrc: imgsrc, haveImg: true});
+    }
+    hideImg() {
+        this.setState({haveImg: false});
     }
     render() {
         const prompt = this.state.havePrompt 
         ? <Prompt text={this.promptText} closeSelf={() => this.close()}></Prompt>
         : null;
+        const bigImg = this.state.haveImg
+        ? <div className='bigimg' onClick={() => {this.hideImg()}}><img src={this.state.imgsrc} alt=""/></div>
+        : null;
         return (
             <div className='detail'>
                 <div className='detail-head'>
-                    <Carousel></Carousel>
+                    <Carousel 
+                        imgsrc={this.state.listState.imgSrc}
+                        showImg={(i) => {this.showImg(i)}}
+                    ></Carousel>
                 </div>
                 <div className='detail-tag'>
                     <div className='tag-left'>
@@ -55,7 +71,7 @@ export default class Detail extends React.Component {
                         <div>{this.state.listState.votes}票</div>
                     </div>
                 </div>
-                <p>
+                <p className='detail-intro'>
                     {this.state.listState.introduction}
                 </p>
                 <div 
@@ -65,6 +81,7 @@ export default class Detail extends React.Component {
                     {this.state.listState.haveVote ? "已投" : "投票"}
                 </div>
                 {prompt}
+                {bigImg}
             </div>
         )
     }

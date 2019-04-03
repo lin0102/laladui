@@ -1,6 +1,9 @@
 import React from 'react';
 import './index.scss'
 import store from '../../../redux/store';
+import leftTop from './image/leftTop.png'
+import leftBottom from './image/leftBottom.png'
+import rightTop from './image/rightTop.png'
 
 class Banner extends React.Component {
     constructor() {
@@ -8,9 +11,13 @@ class Banner extends React.Component {
         this.state = {
             sum: store.getState().sum
         }
+        this.unsubscribe = function(){}
     }
     componentDidMount() {
-        store.subscribe(this.listener);
+        this.unsubscribe = store.subscribe(this.listener);
+    }
+    componentWillUnmount() {
+        this.unsubscribe();
     }
     PrefixInteger(num, length) {
         return (Array(length).join('0') + num).slice(-length);
@@ -19,11 +26,14 @@ class Banner extends React.Component {
         this.setState({sum: store.getState().sum});
     }
     render() {
-        let disUpgrade = 1000 - this.state.sum % 1000;
+        let disUpgrade = 2019 - this.state.sum % 2019;
         disUpgrade = this.PrefixInteger(disUpgrade, 4);
 
         return (
             <div className='banner'>
+                <img src={leftTop} alt=""/>
+                <img src={leftBottom} alt=""/>
+                <img src={rightTop} alt=""/>
                 <div className='total-vote'>
                     <div>{disUpgrade[0]}</div>
                     <div>{disUpgrade[1]}</div>
