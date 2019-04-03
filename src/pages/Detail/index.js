@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import './index.scss';
 import Carousel from '../../components/carousel';
 import store from '../../redux/store';
@@ -17,15 +18,33 @@ export default class Detail extends React.Component {
         this.promptText = "";
     }
     vote() {
-        if(this.state.listState.haveVote) {
+        if (this.state.listState.haveVote) {
             return;
         }
-        if(store.getState().userPolls === 0) {
+
+        if (store.getState().userPolls === 0) {
             this.promptText = "已满";
-            this.setState({havePrompt: true})
+            this.setState({ havePrompt: true });
             return;
         }
-        store.dispatch({type: "VOTE", index: this.pageNum});
+
+        // axios.get(`https://wx.idsbllp.cn/game/api/index.php?redirect=http://XX.com/cheering_vote/poll/${this.pageNum}`)
+        //     .then(res => {
+        //         if (res.data.status === 200) {
+        //             store.dispatch({ type: "VOTE", index: this.pageNum });
+        //             this.promptText = "成功";
+        //             this.setState({
+        //                 listState: store.getState().cheerleaders[this.pageNum],
+        //                 havePrompt: true
+        //             });
+        //         }
+        //     })
+        //     .catch(err => {
+        //         alert("网络繁忙");
+        //         console.log(err);
+        //     })
+        
+        store.dispatch({ type: "VOTE", index: this.pageNum });
         this.promptText = "成功";
         this.setState({
             listState: store.getState().cheerleaders[this.pageNum],
@@ -33,28 +52,32 @@ export default class Detail extends React.Component {
         });
     }
     close() {
-        this.setState({havePrompt: false});
+        this.setState({ havePrompt: false });
     }
     showImg(i) {
         const imgsrc = this.state.listState.imgSrc[i];
-        this.setState({imgsrc: imgsrc, haveImg: true});
+        this.setState({ imgsrc: imgsrc, haveImg: true });
     }
     hideImg() {
-        this.setState({haveImg: false});
+        this.setState({ haveImg: false });
     }
     render() {
-        const prompt = this.state.havePrompt 
-        ? <Prompt text={this.promptText} closeSelf={() => this.close()}></Prompt>
-        : null;
+        const prompt = this.state.havePrompt
+            ? <Prompt text={this.promptText} closeSelf={() => this.close()}></Prompt>
+            : null;
+
         const bigImg = this.state.haveImg
-        ? <div className='bigimg' onClick={() => {this.hideImg()}}><img src={this.state.imgsrc} alt=""/></div>
-        : null;
+            ? <div className='bigimg' onClick={() => { this.hideImg() }}><img src={this.state.imgsrc} alt="" /></div>
+            : null;
+
+        const score = this.state.listState.votesOfSelf / this.state.listState.numOfAthletes * 1000 + this.state.listState.votesOfOther * 10;
+
         return (
             <div className='detail'>
                 <div className='detail-head'>
-                    <Carousel 
+                    <Carousel
                         imgsrc={this.state.listState.imgSrc}
-                        showImg={(i) => {this.showImg(i)}}
+                        showImg={(i) => { this.showImg(i) }}
                     ></Carousel>
                 </div>
                 <div className='detail-tag'>
@@ -67,15 +90,15 @@ export default class Detail extends React.Component {
                         </div>
                     </div>
                     <div className='tag-right'>
-                        <div>323分</div>
+                        <div>{score}</div>
                         <div>{this.state.listState.votes}票</div>
                     </div>
                 </div>
                 <p className='detail-intro'>
                     {this.state.listState.introduction}
                 </p>
-                <div 
-                    className='detail-button' 
+                <div
+                    className='detail-button'
                     onClick={() => this.vote()}
                 >
                     {this.state.listState.haveVote ? "已投" : "投票"}
@@ -86,4 +109,3 @@ export default class Detail extends React.Component {
         )
     }
 }
- 

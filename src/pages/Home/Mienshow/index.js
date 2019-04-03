@@ -27,6 +27,23 @@ export default class Mienshow extends React.Component {
             this.setState({havePrompt: true})
             return;
         }
+
+        // axios.get(`https://wx.idsbllp.cn/game/api/index.php?redirect=http://XX.com/cheering_vote/poll/${i}`)
+        //     .then(res => {
+        //         if (res.data.status === 200) {
+        //             store.dispatch({ type: "VOTE", index: i });
+        //             this.promptText = "成功";
+        //             this.setState({
+        //                 listState: store.getState().cheerleaders[i],
+        //                 havePrompt: true
+        //             });
+        //         }
+        //     })
+        //     .catch(err => {
+        //         alert("网络繁忙");
+        //         console.log(err);
+        //     })
+
         store.dispatch({type: "VOTE", index: i});
         this.promptText = "成功";
         this.setState({havePrompt: true});
