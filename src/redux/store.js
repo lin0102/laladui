@@ -79,9 +79,11 @@ axios.all([getUserInfo(), getLaladuiInfo()])
             alert("请先关注公众号");
             return;
         }
+        
         const userInfo = user.data.showVoter;
         const laladuiInfo = laladui.data.cheerleaders;
         const sum = laladui.data.sum;
+
         store.dispatch({
             type: "INIT",
             sum: sum,
