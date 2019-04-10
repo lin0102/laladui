@@ -28,28 +28,21 @@ export default class Detail extends React.Component {
             return;
         }
 
-        // axios.get(`https://wx.idsbllp.cn/game/api/index.php?redirect=http://XX.com/cheering_vote/poll/${this.pageNum}`)
-        //     .then(res => {
-        //         if (res.data.status === 200) {
-        //             store.dispatch({ type: "VOTE", index: this.pageNum });
-        //             this.promptText = "成功";
-        //             this.setState({
-        //                 listState: store.getState().cheerleaders[this.pageNum],
-        //                 havePrompt: true
-        //             });
-        //         }
-        //     })
-        //     .catch(err => {
-        //         alert("网络繁忙");
-        //         console.log(err);
-        //     })
-        
-        store.dispatch({ type: "VOTE", index: this.pageNum });
-        this.promptText = "成功";
-        this.setState({
-            listState: store.getState().cheerleaders[this.pageNum],
-            havePrompt: true
-        });
+        axios.get(`https://wx.idsbllp.cn/234/cheer/cheering_vote/redirectpoll/${this.pageNum}`)
+            .then(res => {
+                if (res.data.status === 200) {
+                    store.dispatch({ type: "VOTE", index: this.pageNum });
+                    this.promptText = "成功";
+                    this.setState({
+                        listState: store.getState().cheerleaders[this.pageNum],
+                        havePrompt: true
+                    });
+                }
+            })
+            .catch(err => {
+                alert("网络繁忙");
+                console.log(err);
+            })
     }
     close() {
         this.setState({ havePrompt: false });
@@ -70,7 +63,7 @@ export default class Detail extends React.Component {
             ? <div className='bigimg' onClick={() => { this.hideImg() }}><img src={this.state.imgsrc} alt="" /></div>
             : null;
 
-        const score = this.state.listState.votesOfSelf / this.state.listState.numOfAthletes * 1000 + this.state.listState.votesOfOther * 10;
+        const score = (this.state.listState.votesOfSelf / this.state.listState.numOfAthletes * 1000 + this.state.listState.votesOfOther * 10).toFixed(2);
 
         return (
             <div className='detail'>
@@ -90,7 +83,7 @@ export default class Detail extends React.Component {
                         </div>
                     </div>
                     <div className='tag-right'>
-                        <div>{score}</div>
+                        <div>{score}分</div>
                         <div>{this.state.listState.votes}票</div>
                     </div>
                 </div>

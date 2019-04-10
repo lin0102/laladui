@@ -41,7 +41,9 @@ const reducer = function (state = initialState, action) {
             for (let i = 0; i < 13; i++) {
                 const cheerState = cheerStatus[i];
                 const cheerleader = laladui[i];
-                cheerleaders[i].votes = cheerleader.polls;
+                cheerleaders[i].votesOfSelf = cheerleader.polls_self;
+                cheerleaders[i].votesOfOther = cheerleader.polls_other;
+                cheerleaders[i].votes = cheerleader.polls_self + cheerleader.polls_other;
                 cheerleaders[i].haveVote = Boolean(cheerState.status);
             }
 
@@ -61,14 +63,22 @@ const reducer = function (state = initialState, action) {
 const store = createStore(reducer, composeWithDevTools());
 
 function getUserInfo() {
-    return axios.get("http://localhost:3001/user/");
+    return axios.get("https://wx.idsbllp.cn/234/cheer/cheering_vote/redirect/showUserPoll");
 }
 function getLaladuiInfo() {
-    return axios.get("http://localhost:3001/laladui/");
+    return axios.post("https://wx.idsbllp.cn/234/cheer/cheering_vote/display", {
+        "string": "qazwsx",
+        "timestamp": "20190321",
+        "secret": "16d5df84da53cb047a50ba551347022f0e95094b"
+    });
 }
 
 axios.all([getUserInfo(), getLaladuiInfo()])
     .then(axios.spread((user, laladui) => {
+        if(user.data.status === -1) {
+            alert("请先关注公众号");
+            return;
+        }
         const userInfo = user.data.showVoter;
         const laladuiInfo = laladui.data.cheerleaders;
         const sum = laladui.data.sum;
@@ -79,5 +89,8 @@ axios.all([getUserInfo(), getLaladuiInfo()])
             laladui: laladuiInfo,
         })
     }))
+    .catch(err => {
+        console.log(err);
+    })
 
 export default store;

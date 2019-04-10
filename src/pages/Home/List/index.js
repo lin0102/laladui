@@ -33,8 +33,8 @@ export default class List extends React.Component {
         return (
             <div className='List' style={styles.listStyle}>
                 <div className='listContent'>
-                    <Link to="/detail">
-                        <div>
+                    <Link to="/detail" onClick={() => this.props.toDetail()}>
+                        <div style={{backgroundImage: `url(${this.props.imgsrc})`}}>
                             <div>{this.props.listState.votes}票</div>
                         </div>
                     </Link>

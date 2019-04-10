@@ -14,10 +14,14 @@ class Prompt extends React.Component {
     }
 
     componentDidMount() {
+        root.style.height = "100vh";
+        root.style.overflow = "hidden";
         root.appendChild(this.el);
     }
 
     componentWillUnmount() {
+        root.style.height = "";
+        root.style.overflow = "";
         root.removeChild(this.el);
     }
 

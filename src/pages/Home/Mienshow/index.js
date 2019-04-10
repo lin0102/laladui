@@ -5,6 +5,7 @@ import List from '../List'
 import store from '../../../redux/store'
 import Prompt from '../../../components/prompt'
 import Regular from '../../../components/regular'
+import axios from 'axios'
 
 export default class Mienshow extends React.Component {
     constructor() {
@@ -28,25 +29,24 @@ export default class Mienshow extends React.Component {
             return;
         }
 
-        // axios.get(`https://wx.idsbllp.cn/game/api/index.php?redirect=http://XX.com/cheering_vote/poll/${i}`)
-        //     .then(res => {
-        //         if (res.data.status === 200) {
-        //             store.dispatch({ type: "VOTE", index: i });
-        //             this.promptText = "成功";
-        //             this.setState({
-        //                 listState: store.getState().cheerleaders[i],
-        //                 havePrompt: true
-        //             });
-        //         }
-        //     })
-        //     .catch(err => {
-        //         alert("网络繁忙");
-        //         console.log(err);
-        //     })
-
-        store.dispatch({type: "VOTE", index: i});
-        this.promptText = "成功";
-        this.setState({havePrompt: true});
+        axios.get(`https://wx.idsbllp.cn/234/cheer/cheering_vote/redirectpoll/${i}`)
+            .then(res => {
+                if (res.data.status === 200) {
+                    store.dispatch({ type: "VOTE", index: i });
+                    this.promptText = "成功";
+                    this.setState({
+                        listState: store.getState().cheerleaders[i],
+                        havePrompt: true
+                    });
+                } else {
+                    alert("投票失败");
+                    return;
+                }
+            })
+            .catch(err => {
+                alert("网络繁忙");
+                console.log(err);
+            })
     }
     componentDidMount() {
         this.unsubscribe = store.subscribe(this.listener);
@@ -82,6 +82,7 @@ export default class Mienshow extends React.Component {
                     listState={this.state.listStates[i]}
                     vote={() => this.vote(i)}
                     toDetail={() => this.toDetail(i)}
+                    imgsrc={this.state.listStates[i].imgSrc[1]}
                 ></List>
             );
         }

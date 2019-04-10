@@ -44,17 +44,20 @@
                 height: 100%;
                 box-sizing: border-box;
                 border: 0.53vw solid #fb8fa3;
+                background-size: 100%;
+
                 div {
                     width: 11.6vw;
                     height: 4.53vw;
                     border: none;
                     background-image: url(./image/votes.png);
-                    background-size: 100%;
-                    font-size: 2.67vw;
+                    font-size: 2.8vw;
                     text-align: center;
                     line-height: 4.53vw;
                     color: #fffcd5;
                     font-family: tengxiang;
+                    letter-spacing: 0.5vw;
+                    white-space: nowrap;
                 }
             }
             &:nth-child(2) {
