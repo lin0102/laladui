@@ -28,7 +28,7 @@ class Banner extends React.Component {
     render() {
         let disUpgrade = 2019 - this.state.sum % 2019;
         disUpgrade = this.PrefixInteger(disUpgrade, 4);
-
+        let level = Math.floor(this.state.sum / 2019);
         return (
             <div className='banner'>
                 <img src={leftTop} alt=""/>
@@ -41,6 +41,7 @@ class Banner extends React.Component {
                     <div>{disUpgrade[3]}</div>
                     <div>票</div>
                 </div>
+                <p className='level'>当前等级：{level}</p>
             </div>
         );
     }

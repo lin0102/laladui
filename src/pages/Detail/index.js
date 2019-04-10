@@ -27,16 +27,32 @@ export default class Detail extends React.Component {
             this.setState({ havePrompt: true });
             return;
         }
-
-        axios.get(`https://wx.idsbllp.cn/234/cheer/cheering_vote/redirectpoll/${this.pageNum}`)
+        let form = new FormData();
+        form.append("vote_to", `${this.pageNum + 1}`);
+        axios.post(`https://wx.idsbllp.cn/game/Cheer2019/index.php/Home/Index/vote`, form)
             .then(res => {
                 if (res.data.status === 200) {
-                    store.dispatch({ type: "VOTE", index: this.pageNum });
-                    this.promptText = "成功";
-                    this.setState({
-                        listState: store.getState().cheerleaders[this.pageNum],
-                        havePrompt: true
-                    });
+                    axios.post("https://wx.idsbllp.cn/game/Cheer2019/index.php/Home/Index/userStatus")
+                        .then(res => {
+                            if (res.data.status === 200) {
+                                const userInfo = res.data.data;
+                                store.dispatch({
+                                    type: "INIT",
+                                    user: userInfo,
+                                })
+                                store.dispatch({
+                                    type: "VOTE", 
+                                    index: this.pageNum
+                                });
+                                this.promptText = "成功";
+                                this.setState({
+                                    listState: store.getState().cheerleaders[this.pageNum],
+                                    havePrompt: true
+                                });
+                            } else {
+                                alert("网络错误");
+                            }
+                        })
                 }
             })
             .catch(err => {

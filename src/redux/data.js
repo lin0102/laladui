@@ -234,7 +234,7 @@ export const initialState = {
             imgSrc: [
                 "https://wx.idsbllp.cn/234/cheer/pic/anfa1.jpg",
                 "https://wx.idsbllp.cn/234/cheer/pic/anfa2.jpg",
-                "https://wx.idsbllp.cn/234/cheer/pic/anfa3jpg"
+                "https://wx.idsbllp.cn/234/cheer/pic/anfa3.jpg"
             ]
         },
     ]

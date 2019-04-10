@@ -14,7 +14,10 @@
         justify-content: space-around;
         align-items: center;
         border-bottom: 0.13vw solid #fac0b7;
-
+        padding-left: 8.5vw;
+        padding-right: 9.5vw;
+        box-sizing: border-box;
+        justify-content: space-between;
         .tag-left {
             .tag-institute {
                 width: fit-content;

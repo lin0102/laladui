@@ -20,7 +20,7 @@ export default class Carousel extends React.Component {
     }
     handleEnd = () => {
         const distance = Math.abs(this.startX - this.endX);
-        if (distance > 100) {
+        if (distance > 50) {
             if (this.startX > this.endX) {
                 this.carouselNext();
             }

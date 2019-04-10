@@ -17,27 +17,43 @@ export default class Mienshow extends React.Component {
             haveRegular: false
         }
         this.promptText = "";
-        this.unsubscribe = function(){}
+        this.unsubscribe = function () { }
     }
     vote(i) {
-        if(this.state.listStates[i].haveVote) {
+        if (this.state.listStates[i].haveVote) {
             return;
         }
-        if(store.getState().userPolls === 0) {
+        if (store.getState().userPolls === 0) {
             this.promptText = "已满";
-            this.setState({havePrompt: true})
+            this.setState({ havePrompt: true })
             return;
         }
-
-        axios.get(`https://wx.idsbllp.cn/234/cheer/cheering_vote/redirectpoll/${i}`)
+        let form = new FormData();
+        form.append("vote_to", `${i + 1}`);
+        axios.post(`https://wx.idsbllp.cn/game/Cheer2019/index.php/Home/Index/vote`, form)
             .then(res => {
                 if (res.data.status === 200) {
-                    store.dispatch({ type: "VOTE", index: i });
-                    this.promptText = "成功";
-                    this.setState({
-                        listState: store.getState().cheerleaders[i],
-                        havePrompt: true
-                    });
+                    axios.post("https://wx.idsbllp.cn/game/Cheer2019/index.php/Home/Index/userStatus")
+                        .then(res => {
+                            if (res.data.status === 200) {
+                                const userInfo = res.data.data;
+                                store.dispatch({
+                                    type: "INIT",
+                                    user: userInfo,
+                                })
+                                store.dispatch({
+                                    type: "VOTE", 
+                                    index: i
+                                });
+                                this.promptText = "成功";
+                                this.setState({
+                                    listState: store.getState().cheerleaders[i],
+                                    havePrompt: true
+                                });
+                            } else {
+                                alert("网络错误");
+                            }
+                        })
                 } else {
                     alert("投票失败");
                     return;
@@ -64,21 +80,21 @@ export default class Mienshow extends React.Component {
         window.sessionStorage.setItem("detailPage", i);
     }
     close() {
-        this.setState({havePrompt: false});
+        this.setState({ havePrompt: false });
     }
     closeRegular() {
-        this.setState({haveRegular: false})
+        this.setState({ haveRegular: false })
     }
     openRegular() {
-        this.setState({haveRegular: true});
+        this.setState({ haveRegular: true });
     }
     render() {
         let lists = [];
         for (let i = 0; i < this.state.listStates.length; i++) {
             lists.push(
-                <List 
-                    key={i} 
-                    value={i} 
+                <List
+                    key={i}
+                    value={i}
                     listState={this.state.listStates[i]}
                     vote={() => this.vote(i)}
                     toDetail={() => this.toDetail(i)}
@@ -86,13 +102,13 @@ export default class Mienshow extends React.Component {
                 ></List>
             );
         }
-        const prompt = this.state.havePrompt 
-        ? <Prompt text={this.promptText} closeSelf={() => this.close()}></Prompt>
-        : null;
+        const prompt = this.state.havePrompt
+            ? <Prompt text={this.promptText} closeSelf={() => this.close()}></Prompt>
+            : null;
 
         const regular = this.state.haveRegular
-        ? <Regular closeRegular={() => this.closeRegular()}></Regular>
-        : null;
+            ? <Regular closeRegular={() => this.closeRegular()}></Regular>
+            : null;
 
         return (
             <div className='mienShow'>
@@ -113,7 +129,7 @@ export default class Mienshow extends React.Component {
                             <nav></nav>
                             <nav></nav>
                         </div>
-                        <div onClick={() => {this.openRegular()}}>活动规则</div>
+                        <div onClick={() => { this.openRegular() }}>活动规则</div>
                     </div>
                     <img src={headSide} alt="headSide" />
                 </div>

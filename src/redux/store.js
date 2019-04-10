@@ -29,22 +29,20 @@ const reducer = function (state = initialState, action) {
 
 
         case "INIT":
-            const laladui = action.laladui;
-            const user = action.user;
-            const total = action.sum;
-
-            const pollsOfUser = user.polls;
-            const collegeId = user.collage_id;
-            const cheerStatus = user.cheer_status;
+            const pollsOfUser = action.user.surplus_times;
+            const collegeId = action.user.info.college;
+            let total = 0;
             const cheerleaders = state.cheerleaders;
+            const laladui = action.user.college_status;
 
             for (let i = 0; i < 13; i++) {
-                const cheerState = cheerStatus[i];
                 const cheerleader = laladui[i];
-                cheerleaders[i].votesOfSelf = cheerleader.polls_self;
-                cheerleaders[i].votesOfOther = cheerleader.polls_other;
-                cheerleaders[i].votes = cheerleader.polls_self + cheerleader.polls_other;
-                cheerleaders[i].haveVote = Boolean(cheerState.status);
+
+                cheerleaders[i].votesOfSelf = cheerleader.native_num;
+                cheerleaders[i].votesOfOther = cheerleader.foreign_num;
+                cheerleaders[i].haveVote = Boolean(cheerleader.isPraise);
+                cheerleaders[i].votes = cheerleader.native_num + cheerleader.foreign_num;
+                total += cheerleaders[i].votes;
             }
 
             return Object.assign({}, state, {
@@ -62,35 +60,18 @@ const reducer = function (state = initialState, action) {
 
 const store = createStore(reducer, composeWithDevTools());
 
-function getUserInfo() {
-    return axios.get("https://wx.idsbllp.cn/234/cheer/cheering_vote/redirect/showUserPoll");
-}
-function getLaladuiInfo() {
-    return axios.post("https://wx.idsbllp.cn/234/cheer/cheering_vote/display", {
-        "string": "qazwsx",
-        "timestamp": "20190321",
-        "secret": "16d5df84da53cb047a50ba551347022f0e95094b"
-    });
-}
-
-axios.all([getUserInfo(), getLaladuiInfo()])
-    .then(axios.spread((user, laladui) => {
-        if(user.data.status === -1) {
-            alert("请先关注公众号");
-            return;
+axios.post("https://wx.idsbllp.cn/game/Cheer2019/index.php/Home/Index/userStatus")
+    .then(res => {
+        if (res.data.status === 200) {
+            const userInfo = res.data.data;
+            store.dispatch({
+                type: "INIT",
+                user: userInfo,
+            })
+        } else {
+            alert("网络错误");
         }
-        
-        const userInfo = user.data.showVoter;
-        const laladuiInfo = laladui.data.cheerleaders;
-        const sum = laladui.data.sum;
-
-        store.dispatch({
-            type: "INIT",
-            sum: sum,
-            user: userInfo,
-            laladui: laladuiInfo,
-        })
-    }))
+    })
     .catch(err => {
         console.log(err);
     })
