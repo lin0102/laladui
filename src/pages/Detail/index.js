@@ -28,31 +28,22 @@ export default class Detail extends React.Component {
             return;
         }
         let form = new FormData();
-        form.append("vote_to", `${this.pageNum + 1}`);
+        form.append("vote_to", `${parseInt(this.pageNum) + 1}`);
         axios.post(`https://wx.idsbllp.cn/game/Cheer2019/index.php/Home/Index/vote`, form)
             .then(res => {
                 if (res.data.status === 200) {
-                    axios.post("https://wx.idsbllp.cn/game/Cheer2019/index.php/Home/Index/userStatus")
-                        .then(res => {
-                            if (res.data.status === 200) {
-                                const userInfo = res.data.data;
-                                store.dispatch({
-                                    type: "INIT",
-                                    user: userInfo,
-                                })
-                                store.dispatch({
-                                    type: "VOTE", 
-                                    index: this.pageNum
-                                });
-                                this.promptText = "成功";
-                                this.setState({
-                                    listState: store.getState().cheerleaders[this.pageNum],
-                                    havePrompt: true
-                                });
-                            } else {
-                                alert("网络错误");
-                            }
-                        })
+                    store.dispatch({
+                        type: "VOTE",
+                        index: this.pageNum
+                    });
+                    this.promptText = "成功";
+                    this.setState({
+                        listState: store.getState().cheerleaders[this.pageNum],
+                        havePrompt: true
+                    });
+                } else {
+                    alert("投票失败");
+                    return;
                 }
             })
             .catch(err => {

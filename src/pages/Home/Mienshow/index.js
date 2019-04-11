@@ -33,27 +33,15 @@ export default class Mienshow extends React.Component {
         axios.post(`https://wx.idsbllp.cn/game/Cheer2019/index.php/Home/Index/vote`, form)
             .then(res => {
                 if (res.data.status === 200) {
-                    axios.post("https://wx.idsbllp.cn/game/Cheer2019/index.php/Home/Index/userStatus")
-                        .then(res => {
-                            if (res.data.status === 200) {
-                                const userInfo = res.data.data;
-                                store.dispatch({
-                                    type: "INIT",
-                                    user: userInfo,
-                                })
-                                store.dispatch({
-                                    type: "VOTE", 
-                                    index: i
-                                });
-                                this.promptText = "成功";
-                                this.setState({
-                                    listState: store.getState().cheerleaders[i],
-                                    havePrompt: true
-                                });
-                            } else {
-                                alert("网络错误");
-                            }
-                        })
+                    store.dispatch({
+                        type: "VOTE",
+                        index: i
+                    });
+                    this.promptText = "成功";
+                    this.setState({
+                        listState: store.getState().cheerleaders[i],
+                        havePrompt: true
+                    });
                 } else {
                     alert("投票失败");
                     return;

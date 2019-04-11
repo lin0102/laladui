@@ -4,6 +4,8 @@ import store from '../../../redux/store';
 import leftTop from './image/leftTop.png'
 import leftBottom from './image/leftBottom.png'
 import rightTop from './image/rightTop.png'
+import lightLeft from './image/lightLeft.png'
+import lightRight from './image/lightRight.png'
 
 class Banner extends React.Component {
     constructor() {
@@ -31,6 +33,8 @@ class Banner extends React.Component {
         let level = Math.floor(this.state.sum / 2019);
         return (
             <div className='banner'>
+                <img src={lightLeft} alt=""/>
+                <img src={lightRight} alt=""/>
                 <img src={leftTop} alt=""/>
                 <img src={leftBottom} alt=""/>
                 <img src={rightTop} alt=""/>
